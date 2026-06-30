@@ -22,7 +22,7 @@ body {
   font-family: var(--font-body);
   font-weight: 300;
   color: var(--white);
-  background: var(--black);
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #0D0D0D 70%);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -89,7 +89,8 @@ img, svg {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--black);
+  background: transparent;
+  backdrop-filter: blur(4px);
   padding: 0 1.5rem;
 }
 
@@ -140,6 +141,7 @@ img, svg {
   padding: 6rem 0;
   position: relative;
   z-index: 1;
+  scroll-margin-top: 60px;
 }
 
 .section-divider {
@@ -179,7 +181,8 @@ img, svg {
   font-size: clamp(4rem, 10vw, 8rem);
   font-style: italic;
   font-weight: 500;
-  color: var(--gold);
+  color: #D4A84B;
+  text-shadow: 0 0 80px rgba(201, 168, 76, 0.15);
   letter-spacing: -0.02em;
   line-height: 1.05;
   margin-bottom: 1rem;
@@ -295,7 +298,7 @@ img, svg {
 
 .catalog-product__sep {
   border: none;
-  border-top: 1px solid rgba(245, 240, 232, 0.08);
+  border-top: 1px solid rgba(201, 168, 76, 0.12);
   margin-top: 1.25rem;
 }
 
