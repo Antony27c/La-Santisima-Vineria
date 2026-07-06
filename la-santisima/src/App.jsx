@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DrinkCard from './components/DrinkCard.jsx'
+import glassIcon from './assets/glass-icon.png'
 
 function MarbleTexture() {
   return (
@@ -31,7 +31,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar__inner">
-        <span className="navbar__brand">La Santísima</span>
+        <div className="navbar-brand">
+          <img src={glassIcon} alt="" className="navbar-glass-icon" />
+          <span className="navbar-brand-text">La Santísima</span>
+        </div>
         <ul className="navbar__links">
           <li><a href="#catalogo" className="navbar__link">Catálogo</a></li>
           <li><a href="#sobre-nosotros" className="navbar__link">Nosotros</a></li>
@@ -43,49 +46,22 @@ function Navbar() {
 }
 
 const products = {
-  CERVEZAS: [
-    { name: 'Clásica', description: 'Rubia de carácter suave y equilibrado' },
-    { name: 'Suave', description: 'De baja amargor, ideal para el día a día' },
-    { name: 'Tostada', description: 'Notas de malta caramelizada' },
-    { name: 'Radler', description: 'Con limón natural, refrescante' },
-    { name: 'Doble Malta', description: 'Cuerpo robusto y sabor intenso' },
-    { name: 'Sin Alcohol', description: 'Todo el sabor, sin el alcohol' },
-    { name: 'Gluten Free', description: 'Apta para celíacos' },
-  ],
+  CERVEZAS: [],
   VINOS: [
-    { name: 'Tinto Reserva', description: 'Estructura firme, taninos elegantes' },
-    { name: 'Tinto Joven', description: 'Frutal y directo, para tomar fresco' },
-    { name: 'Blanco Seco', description: 'Fresco y mineral, notas cítricas' },
-    { name: 'Rosado', description: 'Delicado, con aromas de frutos rojos' },
-    { name: 'Cava Brut', description: 'Burbujas finas, final seco y limpio' },
-    { name: 'Dulce Natural', description: 'Postre líquido, suave y aromático' },
+    { name: 'Estancia Mendoza Malbec', description: 'Un tinto de cuerpo profundo, ideal para acompañar un asado o una picada de barrio.' },
+    { name: 'Toro Clásico Tinto', description: 'El tinto de mesa de todos los días, simple y noble.' },
   ],
-  LICORES: [
-    { name: 'Licor Crema de Sandía Royal Swan', description: 'Dulce y refrescante, ideal para el verano', abv: '15% vol' },
-    { name: 'Licor Crema de Fresa Royal Swan', description: 'Suave y frutal, perfecto en las rocas' },
-    { name: 'Licor Crema de Arroz Royal Swan', description: 'Delicado y oriental, una experiencia distinta' },
-    { name: 'Licor de Hierbas Puente Pazos', description: 'Herbal y digestivo, tradición gallega', abv: '30% vol' },
-    { name: 'Licor Melón Pi.omka', description: 'Frutal sin culpa, apto para todos', abv: 'sin alcohol' },
-  ],
+  LICORES: [],
   DESTILADOS: [
-    { name: 'Ginebra', description: 'Botánica y aromática, para gin tonics de autor' },
-    { name: 'Ron', description: 'Cañero y suave, base de los mejores tragos' },
-    { name: 'Vodka', description: 'Neutro y limpio, versátil en coctelería' },
-    { name: 'Whisky James Webb', description: 'Ahumado suave, carácter propio' },
-    { name: 'Whisky Johnnie Walker', description: 'Clásico escocés de confianza' },
-    { name: 'Brandy', description: 'Cálido y añejado, para cerrar la noche' },
+    { name: 'Vodka New Style Frutos Rojos', description: 'Vodka saborizado, fresco y frutal.' },
+    { name: 'Vodka Smirnoff Raspberry', description: 'El clásico Smirnoff con un toque a frambuesa.' },
+    { name: 'Vodka Smirnoff Watermelon', description: 'Smirnoff sabor sandía, para los tragos de verano.' },
   ],
   'CÓCTELES LISTOS': [
-    { name: 'Mojito La Recompensa Ice', description: 'Listo para tomar, refrescante y balanceado', abv: '12% vol' },
+    { name: 'Aperitivo Dr. Lemon Mojito', description: 'El mojito de siempre, ya preparado y listo para servir bien frío.' },
+    { name: 'Aperitivo Dr. Lemon Vodka', description: 'Combinado de vodka, práctico y directo al vaso.' },
   ],
 }
-
-const drinks = [
-  { name: 'Negroni', description: 'Ginebra, Campari, vermouth rojo y un toque de naranja.' },
-  { name: 'Moscow Mule', description: 'Vodka, jengibre, lima y soda bien fría.' },
-  { name: 'Margarita', description: 'Tequila, triple sec, jugo de lima y sal en el borde.' },
-  { name: 'Aperol Spritz', description: 'Aperol, prosecco, soda y rodaja de naranja.' },
-]
 
 const categories = Object.keys(products)
 
@@ -141,16 +117,20 @@ function App() {
           </div>
 
           <div className="catalog-products" key={activeCat}>
-            {products[activeCat].map((p, i) => (
-              <div key={i} className="catalog-product">
-                <p className="catalog-product__name">
-                  {p.name}
-                  {p.abv && <span className="catalog-product__abv">{p.abv}</span>}
-                </p>
-                <p className="catalog-product__desc">{p.description}</p>
-                {i < products[activeCat].length - 1 && <hr className="catalog-product__sep" />}
-              </div>
-            ))}
+            {products[activeCat].length === 0 ? (
+              <p className="catalog-empty">Estamos sumando variedad en esta categoría.</p>
+            ) : (
+              products[activeCat].map((p, i) => (
+                <div key={i} className="catalog-product">
+                  <p className="catalog-product__name">
+                    {p.name}
+                    {p.abv && <span className="catalog-product__abv">{p.abv}</span>}
+                  </p>
+                  <p className="catalog-product__desc">{p.description}</p>
+                  {i < products[activeCat].length - 1 && <hr className="catalog-product__sep" />}
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -159,13 +139,9 @@ function App() {
         <div className="container">
           <h2>Tragos delivery</h2>
           <hr className="section-divider" />
-          <p className="section-subtitle">
-            Además de nuestro catálogo, preparamos tragos de especialidad para llevar o recibir en tu casa
-          </p>
-          <div className="drink-grid">
-            {drinks.map((d, i) => (
-              <DrinkCard key={i} name={d.name} description={d.description} />
-            ))}
+          <div className="drinks-empty">
+            <p className="drinks-empty__title">Próximamente</p>
+            <p className="drinks-empty__sub">Estamos armando nuestra carta de tragos a domicilio. Volvé pronto.</p>
           </div>
         </div>
       </section>
@@ -179,7 +155,7 @@ function App() {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <p className="location__address">Av. San Martín 1452, Salta</p>
+            <p className="location__address">Orán 1767, Salta Capital, Salta</p>
             <p className="location__note">Pronto abrimos nuestras puertas. Seguinos en redes para novedades.</p>
           </div>
         </div>
@@ -203,6 +179,34 @@ function App() {
           </a>
         </div>
       </section>
+
+      <footer className="contact-footer">
+        <div className="container">
+          <div className="contact-badges">
+            <a href="mailto:hola@lasantisima.com.ar" aria-label="Email" className="contact-badge">
+              {/* TODO: reemplazar con el correo real */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M3 7l9 6 9-6"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/5493XXXXXXXXXX" aria-label="WhatsApp" className="contact-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 3a9 9 0 00-7.75 13.5L3 21l4.5-1.25A9 9 0 1012 3z"/>
+                <path d="M8.5 8.5c.3 2 3 4.7 5 5l1-1c.3-.3.8-.4 1.2-.1l1.8 1.3c.4.3.5.9.2 1.3-1 1.4-2.7 2-4.3 1.4-3-1.1-5.4-3.5-6.5-6.5-.6-1.6 0-3.3 1.4-4.3.4-.3 1-.2 1.3.2l1.3 1.8c.3.4.2.9-.1 1.2z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/lasantisima" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="contact-badge">
+              {/* TODO: reemplazar con el usuario real cuando lo tengan */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17" cy="7" r="0.6" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
