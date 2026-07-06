@@ -28,6 +28,10 @@ function MarbleTexture() {
 }
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <nav className="navbar">
       <div className="navbar__inner">
@@ -35,11 +39,32 @@ function Navbar() {
           <img src={glassIcon} alt="" className="navbar-glass-icon" />
           <span className="navbar-brand-text">La Santísima</span>
         </div>
-        <ul className="navbar__links">
-          <li><a href="#catalogo" className="navbar__link">Catálogo</a></li>
-          <li><a href="#sobre-nosotros" className="navbar__link">Nosotros</a></li>
-          <li><a href="#contacto" className="navbar__link">Contacto</a></li>
-        </ul>
+        <button
+          className="navbar__toggle"
+          type="button"
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          {menuOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="6" y1="18" x2="18" y2="6" />
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          )}
+        </button>
+      </div>
+      <div className={`navbar__mobile-menu ${menuOpen ? 'navbar__mobile-menu--open' : ''}`}>
+        <a href="#catalogo" className="navbar__mobile-link" onClick={closeMenu}>Catálogo</a>
+        <hr className="navbar__mobile-sep" />
+        <a href="#sobre-nosotros" className="navbar__mobile-link" onClick={closeMenu}>Nosotros</a>
+        <hr className="navbar__mobile-sep" />
+        <a href="#contacto" className="navbar__mobile-link" onClick={closeMenu}>Contacto</a>
       </div>
     </nav>
   )
@@ -163,6 +188,7 @@ function App() {
 
       <section id="contacto" className="section contact-section">
         <div className="container">
+          <p className="contact-eyebrow">Contacto</p>
           <h2>Contacto</h2>
           <hr className="section-divider" />
           <p className="section-subtitle">Escribinos por WhatsApp y te respondemos al toque</p>

@@ -132,9 +132,7 @@ img, svg {
 }
 
 .navbar__links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
+  display: none;
 }
 
 .navbar__link {
@@ -149,6 +147,57 @@ img, svg {
 
 .navbar__link:hover {
   color: var(--gold);
+}
+
+.navbar__toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+}
+
+.navbar__toggle svg {
+  display: block;
+}
+
+.navbar__mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: rgba(13, 13, 13, 0.97);
+  backdrop-filter: blur(4px);
+}
+
+.navbar__mobile-menu--open {
+  max-height: 250px;
+}
+
+.navbar__mobile-link {
+  display: block;
+  padding: 0.875rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.navbar__mobile-link:hover {
+  color: var(--gold);
+}
+
+.navbar__mobile-sep {
+  border: none;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+  margin: 0 1.5rem;
 }
 
 .container {
@@ -198,7 +247,7 @@ img, svg {
 }
 
 .hero__title {
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(2.5rem, 10vw, 8rem);
   font-style: italic;
   font-weight: 500;
   color: #D4A84B;
@@ -239,6 +288,7 @@ img, svg {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0;
+  row-gap: 0.5rem;
   margin-bottom: 3.5rem;
 }
 
@@ -456,6 +506,16 @@ img, svg {
   text-align: center;
 }
 
+.contact-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
 .whatsapp-btn {
   display: inline-flex;
   align-items: center;
@@ -470,6 +530,7 @@ img, svg {
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-top: 1rem;
 }
 
@@ -535,12 +596,15 @@ img, svg {
   .section {
     padding: 4rem 0;
   }
+}
 
-  .navbar__links {
-    gap: 1.25rem;
+@media (max-width: 458px) {
+  .catalog-category {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.7rem;
   }
 
-  .navbar__link {
-    font-size: 0.75rem;
+  .whatsapp-btn {
+    padding: 1rem 1.5rem;
   }
 }
