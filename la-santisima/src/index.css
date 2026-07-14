@@ -269,24 +269,6 @@ img, svg {
   color: var(--white);
 }
 
-.hero__cta {
-  display: inline-flex;
-  margin-top: 2.5rem;
-  padding: 1rem 2.5rem;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.hero__cta:hover {
-  background-color: var(--gold);
-  color: var(--black);
-}
 
 /* ==============================
    SOBRE NOSOTROS
@@ -404,92 +386,6 @@ img, svg {
   padding: 2rem 0;
 }
 
-/* ==============================
-   TRAGOS DELIVERY
-   ============================== */
-
-.drinks-section {
-  background: var(--bg-alt);
-}
-
-.drink-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-  .drink-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .drink-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.drink-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem 1rem;
-  border: 1px solid rgba(201, 168, 76, 0.15);
-  transition: border-color 0.3s ease;
-}
-
-.drink-card:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-}
-
-.drink-card__svg {
-  width: 60px;
-  height: auto;
-  color: rgba(201, 168, 76, 0.4);
-  margin-bottom: 1rem;
-}
-
-.drink-card__name {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--white);
-  margin-bottom: 0.4rem;
-}
-
-.drink-card__desc {
-  font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.6);
-  line-height: 1.5;
-}
-
-.drinks-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 4rem 0;
-}
-
-.drinks-empty__title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-style: italic;
-  color: var(--gold);
-}
-
-.drinks-empty__sub {
-  font-size: 0.9rem;
-  color: rgba(245, 240, 232, 0.5);
-  text-align: center;
-  max-width: 320px;
-}
 
 /* ==============================
    UBICACIÓN

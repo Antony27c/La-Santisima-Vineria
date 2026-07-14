@@ -135,17 +135,6 @@ function App() {
         </div>
       </section>
 
-      <section id="tragos" className="section drinks-section">
-        <div className="container">
-          <h2>Tragos delivery</h2>
-          <hr className="section-divider" />
-          <div className="drinks-empty">
-            <p className="drinks-empty__title">Próximamente</p>
-            <p className="drinks-empty__sub">Estamos armando nuestra carta de tragos a domicilio. Volvé pronto.</p>
-          </div>
-        </div>
-      </section>
-
       <section id="ubicacion" className="section">
         <div className="container">
           <h2>Ubicación</h2>
