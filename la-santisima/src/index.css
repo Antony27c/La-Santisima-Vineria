@@ -76,8 +76,11 @@ img, svg {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at center, rgba(13, 13, 13, 0.1) 0%, rgba(13, 13, 13, 0.35) 100%),
-    url('/marble-bg.png') center / cover no-repeat;
+    radial-gradient(ellipse at center, rgba(13, 13, 13, 0.12) 0%, rgba(13, 13, 13, 0.45) 100%),
+    url('/marble-bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 /* ==============================
@@ -255,13 +258,6 @@ img, svg {
   letter-spacing: -0.02em;
   line-height: 1.05;
   margin-bottom: 1rem;
-}
-
-.hero__logo {
-  display: block;
-  margin: 0 auto 1.25rem;
-  height: 300px;
-  width: auto;
 }
 
 .hero__sub {
@@ -618,13 +614,43 @@ img, svg {
    RESPONSIVE
    ============================== */
 
+@media (max-width: 900px) {
+  .marble-texture {
+    background-position: center top;
+    background-size: cover;
+    opacity: 0.95;
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
   }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 10vw, 6rem);
+  }
 }
 
 @media (max-width: 458px) {
+  .marble-texture {
+    background-position: center top;
+    background-size: 220%;
+    opacity: 0.9;
+  }
+
+  .hero-section {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 12vw, 4.5rem);
+  }
+
   .catalog-category {
     padding: 0.5rem 0.75rem;
     font-size: 0.7rem;
