@@ -533,12 +533,6 @@ img, svg {
 }
 
 @media (max-width: 458px) {
-  .marble-texture {
-    background-position: center top;
-    background-size: 220%;
-    opacity: 0.9;
-  }
-
   .hero-section {
     padding: 2.5rem 0.75rem;
   }
