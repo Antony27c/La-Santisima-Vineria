@@ -1,30 +1,9 @@
 import { useState } from 'react'
-import glassIcon from './assets/glass-icon.png'
+import glassIcon from './assets/glass-icon.svg'
+import Hero from './components/Hero'
 
 function MarbleTexture() {
-  return (
-    <svg
-      className="marble-texture"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-    >
-      <path d="M-100,200 C100,50 300,300 500,100 S700,400 900,150 S1100,350 1300,200" stroke="#C9A84C" strokeWidth="2" fill="none" opacity="0.22" />
-      <path d="M-100,400 C150,250 350,500 550,300 S750,600 950,350 S1150,550 1350,400" stroke="#C9A84C" strokeWidth="1.5" fill="none" opacity="0.3" />
-      <path d="M-100,600 C200,450 400,700 600,500 S800,800 1000,550 S1200,750 1400,600" stroke="#C9A84C" strokeWidth="1" fill="none" opacity="0.32" />
-      <path d="M-100,800 C180,700 380,850 580,750 S780,950 980,800 S1180,900 1380,850" stroke="#C9A84C" strokeWidth="0.8" fill="none" opacity="0.2" />
-      <path d="M-100,1000 C130,900 330,1050 530,950 S730,1150 930,1000 S1130,1100 1330,1050" stroke="#C9A84C" strokeWidth="1.2" fill="none" opacity="0.18" />
-      <path d="M-100,50 C220,-50 420,150 620,50 S820,250 1020,100 S1220,200 1420,50" stroke="#C9A84C" strokeWidth="0.6" fill="none" opacity="0.35" />
-      <path d="M-100,1200 C160,1100 360,1250 560,1150 S760,1350 960,1200 S1160,1300 1360,1250" stroke="#C9A84C" strokeWidth="0.7" fill="none" opacity="0.28" />
-      <path d="M-100,300 C300,100 500,400 700,200 S900,500 1100,300 S1300,450 1500,350" stroke="#C9A84C" strokeWidth="1.8" fill="none" opacity="0.2" />
-      <path d="M-100,700 C250,550 450,800 650,600 S850,900 1050,700 S1250,850 1450,750" stroke="#C9A84C" strokeWidth="1.3" fill="none" opacity="0.3" />
-      <path d="M-100,900 C280,780 480,950 680,830 S880,1050 1080,920 S1280,1000 1480,950" stroke="#C9A84C" strokeWidth="0.9" fill="none" opacity="0.2" />
-      <path d="M-100,1100 C210,1000 410,1150 610,1050 S810,1250 1010,1100 S1210,1200 1410,1150" stroke="#C9A84C" strokeWidth="0.5" fill="none" opacity="0.32" />
-      <path d="M-100,1300 C190,1200 390,1350 590,1250 S790,1450 990,1300 S1190,1400 1390,1350" stroke="#C9A84C" strokeWidth="0.4" fill="none" opacity="0.28" />
-      <path d="M-100,500 C170,350 370,550 570,420 S770,650 970,500 S1170,600 1370,550" stroke="#C9A84C" strokeWidth="0.7" fill="none" opacity="0.28" />
-      <path d="M-100,150 C240,0 440,200 640,80 S840,300 1040,150 S1240,250 1440,180" stroke="#C9A84C" strokeWidth="1.1" fill="none" opacity="0.18" />
-      <path d="M-100,1400 C230,1300 430,1450 630,1350 S830,1550 1030,1400 S1230,1500 1430,1450" stroke="#C9A84C" strokeWidth="0.6" fill="none" opacity="0.22" />
-    </svg>
-  )
+  return <div className="marble-texture" aria-hidden="true" />
 }
 
 function Navbar() {
@@ -97,11 +76,7 @@ function App() {
     <>
       <MarbleTexture />
       <Navbar />
-
-      <section id="hero" className="hero-section">
-        <h1 className="hero__title">La Santísima</h1>
-        <p className="hero__sub">Vinos y licores</p>
-      </section>
+      <Hero />
 
       <section id="sobre-nosotros" className="section">
         <div className="container">
