@@ -22,7 +22,7 @@ body {
   font-family: var(--font-body);
   font-weight: 300;
   color: var(--white);
-  background: radial-gradient(ellipse at center, #1a1a1a 0%, #0D0D0D 70%);
+  background-color: var(--black);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,10 +75,13 @@ img, svg {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-}
-
-.marble-texture path {
-  vector-effect: non-scaling-stroke;
+  background:
+    radial-gradient(ellipse at center, rgba(13, 13, 13, 0.12) 0%, rgba(13, 13, 13, 0.45) 100%),
+    url('/marble-bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* ==============================
@@ -114,21 +117,21 @@ img, svg {
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.03em;
 }
 
 .navbar-glass-icon {
-  height: 28px;
+  height: 50px;
   width: auto;
   display: block;
 }
 
 .navbar-brand-text {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-style: italic;
   color: var(--gold);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .navbar__links {
@@ -235,7 +238,7 @@ img, svg {
    ============================== */
 
 .hero-section {
-  min-height: calc(100svh - 60px);
+  min-height: calc(100svh - 80px); /* 80px = altura real de tu navbar, ajustala */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -246,11 +249,21 @@ img, svg {
   z-index: 1;
 }
 
+.hero__logo {
+  width: clamp(120px, 25vw, 200px);
+  height: 145px;
+  margin-bottom: 1.5rem;
+  /* El SVG ya es transparente y dorado. Añadimos un drop-shadow dorado para el brillo premium */
+  filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.35));
+  animation: fadeInLogo 1.5s ease-out;
+}
+
 .hero__title {
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 10vw, 8rem);
   font-style: italic;
   font-weight: 500;
-  color: #D4A84B;
+  color: var(--gold);
   text-shadow: 0 0 80px rgba(201, 168, 76, 0.15);
   letter-spacing: -0.02em;
   line-height: 1.05;
@@ -265,6 +278,19 @@ img, svg {
   text-transform: uppercase;
   color: var(--white);
 }
+
+@keyframes fadeInLogo {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 /* ==============================
    SOBRE NOSOTROS
@@ -382,92 +408,6 @@ img, svg {
   padding: 2rem 0;
 }
 
-/* ==============================
-   TRAGOS DELIVERY
-   ============================== */
-
-.drinks-section {
-  background: var(--bg-alt);
-}
-
-.drink-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-  .drink-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .drink-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.drink-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem 1rem;
-  border: 1px solid rgba(201, 168, 76, 0.15);
-  transition: border-color 0.3s ease;
-}
-
-.drink-card:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-}
-
-.drink-card__svg {
-  width: 60px;
-  height: auto;
-  color: rgba(201, 168, 76, 0.4);
-  margin-bottom: 1rem;
-}
-
-.drink-card__name {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--white);
-  margin-bottom: 0.4rem;
-}
-
-.drink-card__desc {
-  font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.6);
-  line-height: 1.5;
-}
-
-.drinks-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 4rem 0;
-}
-
-.drinks-empty__title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-style: italic;
-  color: var(--gold);
-}
-
-.drinks-empty__sub {
-  font-size: 0.9rem;
-  color: rgba(245, 240, 232, 0.5);
-  text-align: center;
-  max-width: 320px;
-}
 
 /* ==============================
    UBICACIÓN
@@ -592,13 +532,45 @@ img, svg {
    RESPONSIVE
    ============================== */
 
+@media (max-width: 900px) {
+  .marble-texture {
+    background-position: center top;
+    background-size: cover;
+    opacity: 0.95;
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
   }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .marble-texture {
+    background-image: radial-gradient(ellipse at center, rgba(13, 13, 13, 0.12) 0%, rgba(13, 13, 13, 0.45) 100%), url('/marble-mobile.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 10vw, 6rem);
+  }
 }
 
 @media (max-width: 458px) {
+  .hero-section {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 12vw, 4.5rem);
+  }
+
   .catalog-category {
     padding: 0.5rem 0.75rem;
     font-size: 0.7rem;
