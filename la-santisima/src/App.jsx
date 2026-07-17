@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import glassIcon from './assets/glass-icon.svg'
+import logoIcon from './assets/Copa_La_Santisima (Finish).svg'
 import Hero from './components/Hero'
 
 function MarbleTexture() {
@@ -15,7 +15,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar__inner">
         <div className="navbar-brand">
-          <img src={glassIcon} alt="" className="navbar-glass-icon" />
+          <img src={logoIcon} alt="La Santísima" className="navbar-glass-icon" />
           <span className="navbar-brand-text">La Santísima</span>
         </div>
         <button
