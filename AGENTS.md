@@ -36,9 +36,9 @@ La Santisima - Vineria/            ← raíz del repo
     └── src/
         ├── main.jsx               ← entry point (createRoot + StrictMode)
         ├── App.jsx                ← página completa (~244 líneas)
-        ├── index.css              ← estilos globales + mármol SVG inline (~607 líneas)
+        ├── index.css              ← estilos globales + mármol SVG inline (~555 líneas)
         ├── assets/
-        │   ├── glass-icon.png     ← raster con transparencia, usado en navbar como isotipo
+        │   ├── Copa_La_Santisima (Finish).svg  ← SVG copa, isotipo usado en navbar y hero
         │   ├── hero.png           ← no se usa
         │   ├── react.svg          ← default Vite, no se usa
         │   └── vite.svg           ← default Vite, no se usa
@@ -62,7 +62,7 @@ La Santisima - Vineria/            ← raíz del repo
 | Fondo | Mármol oscuro con vetas doradas (SVG inline, 15+ paths) + `radial-gradient(ellipse at center, #1A1A1A 0%, #0D0D0D 70%)` en body |
 | Paleta | `#0D0D0D`, `#C9A84C`, `#F5F0E8`, `#2A2A2A`, `#1A1A1A` |
 | Separadores | Dorados finos (60px × 1px) |
-| Navbar | Sticky, backdrop blur(4px), marca dorada itálica + glass-icon izq., botón hamburguesa SVG inline siempre visible → menú dropdown con 3 links. Sin links en fila en ningún breakpoint. |
+| Navbar | Sticky, backdrop blur(4px), marca dorada itálica + isotipo copa SVG izq., botón hamburguesa SVG inline siempre visible → menú dropdown con 3 links. Sin links en fila en ningún breakpoint. |
 | Responsive | Mobile 375px+; drink grid 4 → 2 → 1 col; section padding 6rem → 4rem en mobile; navbar hamburguesa universal (sin breakpoint) |
 
 ## Datos del catálogo (hardcodeados en App.jsx)
@@ -90,14 +90,13 @@ const products = {
 ## Convenciones
 
 - **Sin imágenes externas** ni íconos de librerías — todo SVG inline
-- **Excepción**: `glass-icon.png` (raster con transparencia, isotipo real de marca en navbar)
 - **Catálogo sin cards** — solo texto: nombre dorado itálico + abv badge opcional + descripción
 - **Sin routing** — single page con anchors y `scroll-behavior: smooth`
 - **Datos hardcodeados** en `App.jsx` — sin API ni backend
 - **CSS plano** con `:root` variables, sin módulos CSS ni CSS-in-JS
 - **WhatsApp número placeholder** — reemplazar `5493XXXXXXXXXX` antes de producción
-- **Email placeholder** — reemplazar `hola@lasantisima.com.ar` en footer
-- **Instagram placeholder** — https://instagram.com/lasantisima
+- **Email** — `lasantisimavineria@gmail.com` en footer
+- **Instagram** — https://www.instagram.com/lasantisima_ar/
 - **`hero.png` y `public/icons.svg` existen pero no se usan** en la app
 - **DrinkCard.jsx** existe como componente pero la sección de tragos está en estado "Próximamente" (no lo importa ni renderiza)
 
