@@ -215,15 +215,7 @@ function App() {
           <hr className="section-divider" />
           <div className="about__text">
             <p>
-              La Santísima nace de un sueño de barrio: acercar los mejores vinos, licores y espumantes
-              a nuestra gente, con la calidez de quien recibe amigos en casa.
-            </p>
-            <p>
-              Somos un emprendimiento familiar que recién comienza su camino. Creemos en el producto
-              bien seleccionado, en el trato personalizado y en que cada botella cuenta una historia.
-            </p>
-            <p>
-              Este es nuestro primer paso. Te invitamos a ser parte de esta historia.
+              Somos un espacio nuevo en Salta, pensado para acompañarte en cada juntada. Te ofrecemos un catálogo de bebidas variado y cuidado, con un estilo actual y sin vueltas — cerca de vos, como tiene que ser.
             </p>
           </div>
         </div>
