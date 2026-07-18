@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import logoIcon from './assets/Copa_La_Santisima (Finish).svg'
 import Hero from './components/Hero'
 
@@ -49,28 +49,159 @@ function Navbar() {
   )
 }
 
-const products = {
-  CERVEZAS: [],
-  VINOS: [
-    { name: 'Estancia Mendoza Malbec', description: 'Un tinto de cuerpo profundo, ideal para acompañar un asado o una picada de barrio.' },
-    { name: 'Toro Clásico Tinto', description: 'El tinto de mesa de todos los días, simple y noble.' },
-  ],
-  LICORES: [],
-  DESTILADOS: [
-    { name: 'Vodka New Style Frutos Rojos', description: 'Vodka saborizado, fresco y frutal.' },
-    { name: 'Vodka Smirnoff Raspberry', description: 'El clásico Smirnoff con un toque a frambuesa.' },
-    { name: 'Vodka Smirnoff Watermelon', description: 'Smirnoff sabor sandía, para los tragos de verano.' },
-  ],
-  'CÓCTELES LISTOS': [
-    { name: 'Aperitivo Dr. Lemon Mojito', description: 'El mojito de siempre, ya preparado y listo para servir bien frío.' },
-    { name: 'Aperitivo Dr. Lemon Vodka', description: 'Combinado de vodka, práctico y directo al vaso.' },
-  ],
+const products = [
+  { name: 'Estancia Mendoza Malbec', category: 'VINOS', description: 'Cuerpo y carácter para un buen asado.', price: '$5.500' },
+  { name: 'Toro Clásico Tinto', category: 'VINOS', description: 'El tinto de todos los días, simple y noble.', price: '$3.200' },
+  { name: 'Vodka New Style Frutos Rojos', category: 'DESTILADOS', description: 'Fresco y frutal, perfecto para combinar.', price: '$4.800' },
+  { name: 'Vodka Smirnoff Raspberry', category: 'DESTILADOS', description: 'El clásico con un toque a frambuesa.', price: '$6.200' },
+  { name: 'Vodka Smirnoff Watermelon', category: 'DESTILADOS', description: 'Sabor sandía para los tragos de verano.', price: '$6.200' },
+  { name: 'Aperitivo Dr. Lemon Mojito', category: 'CÓCTELES LISTOS', description: 'Ya preparado, solo servirlo bien frío.', price: '$3.800' },
+  { name: 'Aperitivo Dr. Lemon Vodka', category: 'CÓCTELES LISTOS', description: 'Práctico y directo al vaso.', price: '$3.800' },
+]
+
+const categories = ['todos', ...new Set(products.map(p => p.category))]
+
+function ProductCard({ product, className }) {
+  return (
+    <article className={`product-card${className ? ' ' + className : ''}`}>
+      <div className="product-card__header">
+        <span className="product-card__bullet" />
+        <span className="product-card__category">{product.category}</span>
+      </div>
+      <h3 className="product-card__name">{product.name}</h3>
+      <p className="product-card__desc">{product.description}</p>
+      <hr className="product-card__divider" />
+      <p className="product-card__price">{product.price}</p>
+    </article>
+  )
 }
 
-const categories = Object.keys(products)
+function CatalogCarousel({ items }) {
+  const trackRef = useRef(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const positionRef = useRef(0)
+  const animFrameRef = useRef(null)
+  const dragRef = useRef(null)
+  const inactivityRef = useRef(null)
+  const hasInteractedRef = useRef(false)
+
+  const SPEED = 1.8
+
+  const loop = useCallback(() => {
+    if (!trackRef.current || isPaused) {
+      animFrameRef.current = requestAnimationFrame(loop)
+      return
+    }
+    const half = trackRef.current.scrollWidth / 2
+    positionRef.current -= SPEED
+    if (Math.abs(positionRef.current) >= half) {
+      positionRef.current = 0
+    }
+    trackRef.current.style.transform = `translateX(${positionRef.current}px)`
+    animFrameRef.current = requestAnimationFrame(loop)
+  }, [isPaused])
+
+  useEffect(() => {
+    animFrameRef.current = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(animFrameRef.current)
+  }, [loop])
+
+  const resumeAfterDelay = useCallback(() => {
+    clearTimeout(inactivityRef.current)
+    inactivityRef.current = setTimeout(() => {
+      hasInteractedRef.current = false
+      setIsPaused(false)
+    }, 3000)
+  }, [])
+
+  const handlePointerDown = useCallback((e) => {
+    e.preventDefault()
+    setIsPaused(true)
+    clearTimeout(inactivityRef.current)
+    cancelAnimationFrame(animFrameRef.current)
+    trackRef.current.style.cursor = 'grabbing'
+    hasInteractedRef.current = true
+    dragRef.current = {
+      startX: e.clientX,
+      startPos: positionRef.current,
+    }
+  }, [])
+
+  const handlePointerMove = useCallback((e) => {
+    if (!dragRef.current) return
+    const delta = e.clientX - dragRef.current.startX
+    positionRef.current = dragRef.current.startPos + delta
+    trackRef.current.style.transform = `translateX(${positionRef.current}px)`
+  }, [])
+
+  const handlePointerUp = useCallback(() => {
+    if (!dragRef.current) return
+    dragRef.current = null
+    if (trackRef.current) trackRef.current.style.cursor = ''
+    resumeAfterDelay()
+    animFrameRef.current = requestAnimationFrame(loop)
+  }, [resumeAfterDelay, loop])
+
+  const handleMouseEnter = useCallback(() => {
+    setIsPaused(true)
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    if (!hasInteractedRef.current) {
+      setIsPaused(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    positionRef.current = 0
+    hasInteractedRef.current = false
+    clearTimeout(inactivityRef.current)
+    setIsPaused(false)
+    if (trackRef.current) {
+      trackRef.current.style.transform = 'translateX(0px)'
+    }
+  }, [items])
+
+  if (items.length === 0) {
+    return <p className="catalog-empty">Estamos sumando variedad en esta categoría.</p>
+  }
+
+  return (
+    <div
+      className="carousel-viewport"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="carousel-track" ref={trackRef}>
+        {items.map((p, i) => <ProductCard key={`a-${i}`} product={p} className="carousel-card" />)}
+        {items.map((p, i) => <ProductCard key={`b-${i}`} product={p} className="carousel-card" />)}
+      </div>
+    </div>
+  )
+}
+
+function CatalogGrid({ items }) {
+  if (items.length === 0) {
+    return <p className="catalog-empty">Estamos sumando variedad en esta categoría.</p>
+  }
+
+  return (
+    <div className="catalog-grid">
+      {items.map((p, i) => <ProductCard key={i} product={p} />)}
+    </div>
+  )
+}
 
 function App() {
-  const [activeCat, setActiveCat] = useState(categories[0])
+  const [activeCat, setActiveCat] = useState('todos')
+
+  const filteredProducts = activeCat === 'todos'
+    ? products
+    : products.filter(p => p.category === activeCat)
 
   return (
     <>
@@ -111,25 +242,16 @@ function App() {
                 className={`catalog-category ${activeCat === cat ? 'catalog-category--active' : ''}`}
                 onClick={() => setActiveCat(cat)}
               >
-                {cat}
+                {cat === 'todos' ? 'Todos' : cat}
               </button>
             ))}
           </div>
 
           <div className="catalog-products" key={activeCat}>
-            {products[activeCat].length === 0 ? (
-              <p className="catalog-empty">Estamos sumando variedad en esta categoría.</p>
+            {activeCat === 'todos' ? (
+              <CatalogCarousel items={filteredProducts} />
             ) : (
-              products[activeCat].map((p, i) => (
-                <div key={i} className="catalog-product">
-                  <p className="catalog-product__name">
-                    {p.name}
-                    {p.abv && <span className="catalog-product__abv">{p.abv}</span>}
-                  </p>
-                  <p className="catalog-product__desc">{p.description}</p>
-                  {i < products[activeCat].length - 1 && <hr className="catalog-product__sep" />}
-                </div>
-              ))
+              <CatalogGrid items={filteredProducts} />
             )}
           </div>
         </div>
