@@ -173,8 +173,7 @@ function App() {
       <footer className="contact-footer">
         <div className="container">
           <div className="contact-badges">
-            <a href="mailto:hola@lasantisima.com.ar" aria-label="Email" className="contact-badge">
-              {/* TODO: reemplazar con el correo real */}
+            <a href="mailto:lasantisimavineria@gmail.com" aria-label="Email" className="contact-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <rect x="3" y="5" width="18" height="14" rx="2"/>
                 <path d="M3 7l9 6 9-6"/>
@@ -187,7 +186,7 @@ function App() {
               </svg>
             </a>
             <a href="https://instagram.com/lasantisima" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="contact-badge">
-              {/* TODO: reemplazar con el usuario real cuando lo tengan */}
+              {/* @pending: reemplazar con el usuario real de Instagram cuando el cliente lo defina — valor actual es placeholder */}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="5"/>
                 <circle cx="12" cy="12" r="4"/>
