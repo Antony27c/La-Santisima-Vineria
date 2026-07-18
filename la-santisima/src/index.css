@@ -2,7 +2,6 @@
   --black: #0D0D0D;
   --gold: #C9A84C;
   --white: #F5F0E8;
-  --bg-alt: #1A1A1A;
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Lato', system-ui, sans-serif;
@@ -105,14 +104,6 @@ img, svg {
   height: 60px;
 }
 
-.navbar__brand {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--gold);
-  letter-spacing: 0.02em;
-}
-
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -123,6 +114,7 @@ img, svg {
   height: 50px;
   width: auto;
   display: block;
+  color: var(--gold);
 }
 
 .navbar-brand-text {
@@ -131,24 +123,6 @@ img, svg {
   font-style: italic;
   color: var(--gold);
   letter-spacing: 0.04em;
-}
-
-.navbar__links {
-  display: none;
-}
-
-.navbar__link {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 0.85rem;
-  color: var(--white);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-.navbar__link:hover {
-  color: var(--gold);
 }
 
 .navbar__toggle {
@@ -237,7 +211,7 @@ img, svg {
    ============================== */
 
 .hero-section {
-  min-height: calc(100svh - 80px); /* 80px = altura real de tu navbar, ajustala */
+  min-height: calc(100svh - 60px); /* 60px = altura del navbar (definida en .navbar__inner height) */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -252,7 +226,7 @@ img, svg {
   width: clamp(120px, 25vw, 200px);
   height: 145px;
   margin-bottom: 1.5rem;
-  /* El SVG ya es transparente y dorado. Añadimos un drop-shadow dorado para el brillo premium */
+  color: var(--gold);
   filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.35));
   animation: fadeInLogo 1.5s ease-out;
 }
