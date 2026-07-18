@@ -24,6 +24,7 @@ body {
   color: var(--white);
   background-color: var(--black);
   line-height: 1.6;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -71,8 +72,6 @@ img, svg {
 .marble-texture {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   pointer-events: none;
   z-index: 0;
   background:
