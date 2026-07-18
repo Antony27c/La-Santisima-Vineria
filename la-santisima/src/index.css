@@ -65,11 +65,14 @@ img, svg {
 }
 
 /* ==============================
-   MARBLE TEXTURE (fixed bg)
+   MARBLE TEXTURE (bg)
    ============================== */
 
 .marble-texture {
-  position: fixed;
+  /* position: absolute en vez de fixed — fixed causa jitter en navegadores
+     mobile (iOS Safari y Chrome/Brave Android) por el resize dinámico
+     de la barra de direcciones durante el scroll */
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
@@ -79,7 +82,7 @@ img, svg {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* ==============================
