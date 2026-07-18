@@ -185,8 +185,7 @@ function App() {
                 <path d="M8.5 8.5c.3 2 3 4.7 5 5l1-1c.3-.3.8-.4 1.2-.1l1.8 1.3c.4.3.5.9.2 1.3-1 1.4-2.7 2-4.3 1.4-3-1.1-5.4-3.5-6.5-6.5-.6-1.6 0-3.3 1.4-4.3.4-.3 1-.2 1.3.2l1.3 1.8c.3.4.2.9-.1 1.2z"/>
               </svg>
             </a>
-            <a href="https://instagram.com/lasantisima" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="contact-badge">
-              {/* @pending: reemplazar con el usuario real de Instagram cuando el cliente lo defina — valor actual es placeholder */}
+            <a href="https://www.instagram.com/lasantisima_ar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="contact-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="5"/>
                 <circle cx="12" cy="12" r="4"/>
