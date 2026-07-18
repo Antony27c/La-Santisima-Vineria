@@ -527,11 +527,10 @@ img, svg {
 
   .marble-texture {
     background-image: radial-gradient(ellipse at center, rgba(13, 13, 13, 0.12) 0%, rgba(13, 13, 13, 0.45) 100%), url('/marble-mobile.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    /* scroll en mobile — fixed causa jitter/desfase en Safari iOS y Chrome Android
-       por conflicto con el viewport dinámico (address bar se oculta/muestra) */
+    /* repeat-y + 100% auto en la imagen (segunda capa), gradiente no repetido (primera capa) */
+    background-repeat: no-repeat, repeat-y;
+    background-position: center center, center top;
+    background-size: auto, 100% auto;
     background-attachment: scroll;
   }
 
