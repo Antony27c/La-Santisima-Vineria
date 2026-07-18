@@ -553,7 +553,9 @@ img, svg {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
+    /* scroll en mobile — fixed causa jitter/desfase en Safari iOS y Chrome Android
+       por conflicto con el viewport dinámico (address bar se oculta/muestra) */
+    background-attachment: scroll;
   }
 
   .hero__title {
