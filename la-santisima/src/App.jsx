@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import logoIcon from './assets/Copa_La_Santisima (Finish).svg'
 import Hero from './components/Hero'
+import AboutGlass from './components/AboutGlass'
 
 function MarbleTexture() {
   return <div className="marble-texture" aria-hidden="true" />
@@ -199,6 +200,25 @@ function CatalogGrid({ items }) {
 function App() {
   const [activeCat, setActiveCat] = useState('todos')
 
+  // Scroll reveal: agrega reveal--visible la primera vez que cada
+  // sección entra al viewport (una sola vez, no se repite)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   const filteredProducts = activeCat === 'todos'
     ? products
     : products.filter(p => p.category === activeCat)
@@ -209,19 +229,26 @@ function App() {
       <Navbar />
       <Hero />
 
-      <section id="sobre-nosotros" className="section">
+      <section id="sobre-nosotros" className="section reveal">
         <div className="container">
-          <h2>Sobre nosotros</h2>
-          <hr className="section-divider" />
-          <div className="about__text">
-            <p>
-              Somos un espacio nuevo en Salta, pensado para acompañarte en cada juntada. Te ofrecemos un catálogo de bebidas variado y cuidado, con un estilo actual y sin vueltas — cerca de vos, como tiene que ser.
-            </p>
+          <div className="about">
+            <div className="about__content">
+              <h2 className="about__title">Sobre nosotros</h2>
+              <hr className="section-divider about__divider" />
+              <div className="about__text">
+                <p>
+                  Somos un espacio nuevo en Salta, pensado para acompañarte en cada juntada. Te ofrecemos un catálogo de bebidas variado y cuidado, con un estilo actual y sin vueltas — cerca de vos, como tiene que ser.
+                </p>
+              </div>
+            </div>
+            <div className="about__graphic">
+              <AboutGlass className="about__logo" />
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="catalogo" className="section">
+      <section id="catalogo" className="section reveal">
         <div className="container">
           <h2>Catálogo</h2>
           <hr className="section-divider" />
@@ -249,7 +276,7 @@ function App() {
         </div>
       </section>
 
-      <section id="ubicacion" className="section">
+      <section id="ubicacion" className="section reveal">
         <div className="container">
           <h2>Ubicación</h2>
           <hr className="section-divider" />
@@ -264,7 +291,7 @@ function App() {
         </div>
       </section>
 
-      <section id="contacto" className="section contact-section">
+      <section id="contacto" className="section contact-section reveal">
         <div className="container">
           <p className="contact-eyebrow">Contacto</p>
           <h2>Contacto</h2>
